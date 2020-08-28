@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverses_of_relationship, source: :user
   #userがお気に入りにしているmicropost favorites経由(多対多)
   has_many :favorites
-  has_many :like_posts, through: :favorites, source: :micropost
+  has_many :likes, through: :favorites, source: :micropost
   
   #フォロー機能
   def follow(other_user)
@@ -46,6 +46,6 @@ class User < ApplicationRecord
   end
   
   def like_post?(micropost)
-    self.like_posts.include?(micropost)
+    self.likes.include?(micropost)
   end
 end
